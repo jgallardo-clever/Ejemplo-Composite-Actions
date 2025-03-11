@@ -3,7 +3,7 @@ description: Commit del archivo visitantes.txt
 
 inputs:
   path:
-    description: 'Ruta del archivo a commitear'
+    description: ''
     required: true
 
 runs:
