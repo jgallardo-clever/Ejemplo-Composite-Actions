@@ -13,7 +13,6 @@ jobs:
 
             - name: Obtener USUARIO de la variable de entorno creada por el action
               uses: ../actions/get-usuario
-              run: echo "El usuario que ejecutó el workflow es $USUARIO"
 
             - name: Imprimir visitante
               run: echo "El usuario $USUARIO visitó el archivo a las $(date)" >> visitantes.txt
