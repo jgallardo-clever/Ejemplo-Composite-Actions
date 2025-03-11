@@ -9,7 +9,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout del repositorio
-              uses: actions/checkout@v4
+              uses: actions/checkout@v2
+
+            - name: Listamos los archivos y carpetas
+              run: ls -R
 
             - name: Obtener USUARIO de la variable de entorno creada por el action
               uses: ./actions/get-usuario
