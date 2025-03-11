@@ -14,8 +14,11 @@ jobs:
             - name: Listamos los archivos y carpetas
               run: ls -la -R
 
+            - name: Verificar existencia de get-usuario.yml
+              run: test -f ./.github/actions/get-usuario/action.yml || { echo "Archivo get-usuario/action.yml no encontrado"; exit 1; }
+
             - name: Obtener USUARIO de la variable de entorno creada por el action
-              uses: ./.github/actions/get-usuario.yml
+              uses: ./.github/actions/get-usuario
 
             - name: Imprimir visitante
               run: echo "El usuario $USUARIO visitó el archivo a las $(date)" >> visitantes.txt
@@ -24,6 +27,6 @@ jobs:
               run: cat visitantes.txt
             
             - name: Agregar commit con el archivo visitantes.txt
-              uses: ./.github/actions/commit-visitantes.yml
+              uses: ./.github/actions/commit-visitantes
               with:
                 path: visitantes.txt
