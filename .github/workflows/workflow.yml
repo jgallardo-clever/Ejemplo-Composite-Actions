@@ -15,7 +15,7 @@ jobs:
               run: ls -la -R
 
             - name: Obtener USUARIO de la variable de entorno creada por el action
-              uses: ./.github/actions/get-usuario
+              uses: ./.github/actions/get-usuario.yml
 
             - name: Imprimir visitante
               run: echo "El usuario $USUARIO visitó el archivo a las $(date)" >> visitantes.txt
@@ -24,6 +24,6 @@ jobs:
               run: cat visitantes.txt
             
             - name: Agregar commit con el archivo visitantes.txt
-              uses: ./.github/actions/commit-visitantes
+              uses: ./.github/actions/commit-visitantes.yml
               with:
                 path: visitantes.txt
