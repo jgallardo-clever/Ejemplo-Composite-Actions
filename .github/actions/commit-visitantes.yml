@@ -1,0 +1,21 @@
+name: Commit Visitantes
+description: Commit del archivo visitantes.txt
+
+inputs:
+  path:
+    description: 'Ruta del archivo a commitear'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Configurar git
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+    - name: Agregar archivo
+      run: git add ${{ inputs.path }}
+    - name: Commit archivo
+      run: git commit -m "Agregar visitantes.txt"
+    - name: Push cambios
+      run: git push

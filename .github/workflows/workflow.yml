@@ -1,0 +1,27 @@
+# Workflow que nos imprime el nombre del usuario que ejecutó el workflow, la fecha, la hora y lo almacena en un archivo llamado visitantes.txt
+name: Quién me visita
+
+on: workflow_dispatch
+
+jobs:
+    visitante:
+        name: Quién me visita
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout del repositorio
+              uses: actions/checkout@v4
+
+            - name: Obtener USUARIO de la variable de entorno creada por el action
+              uses: ../actions/get-usuario
+              run: echo "El usuario que ejecutó el workflow es $USUARIO"
+
+            - name: Imprimir visitante
+              run: echo "El usuario $USUARIO visitó el archivo a las $(date)" >> visitantes.txt
+            
+            - name: Mostrar visitantes
+              run: cat visitantes.txt
+            
+            - name: Agregar commit con el archivo visitantes.txt
+              uses: ../actions/commit-visitantes
+              with:
+                path: visitantes.txt

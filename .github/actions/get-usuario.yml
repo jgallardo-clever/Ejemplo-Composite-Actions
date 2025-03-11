@@ -1,0 +1,15 @@
+# Action que nos almacena el nombre del usuario que ejecutó el workflow en una variable de entorno llamada USUARIO
+name: Obtener USUARIO
+# El action será llamado por el workflow llamado "workflow.yml"
+on:
+  workflow_call:
+    workflows: ["Quién me visita"]
+
+jobs:
+  get-usuario:
+    runs-on: ubuntu-latest
+    steps:
+      # Paso para obtener el nombre del usuario que ejecutó el workflow
+      - name: Obtener USUARIO
+        id: get-usuario
+        run: echo "USUARIO=${{ github.actor }}" >> $GITHUB_ENV
