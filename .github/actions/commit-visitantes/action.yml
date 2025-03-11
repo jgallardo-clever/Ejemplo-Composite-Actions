@@ -7,15 +7,19 @@ inputs:
     required: true
 
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Configurar git
+      shell: bash
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
     - name: Agregar archivo
+      shell: bash
       run: git add ${{ inputs.path }}
     - name: Commit archivo
+      shell: bash
       run: git commit -m "Agregar visitantes.txt"
     - name: Push cambios
+      shell: bash
       run: git push
