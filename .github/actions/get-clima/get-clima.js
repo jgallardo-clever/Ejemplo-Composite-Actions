@@ -24,10 +24,10 @@ const city = core.getInput('ciudad');
 // Llamamos a la función getWeather con la ciudad como parámetro
 getWeather(city)
     .then(data => {
-        // Imprimimos el nombre de la ciudad y la temperatura en la consola
-        console.log(`::set-output name=ciudad::${data.location.name}`);
-        console.log(`::set-output name=clima::${data.current.temp_c}`);
-        console.log(`::set-output name=fecha::${data.location.localtime}`);
+        // Guardamos los resultados en archivos de entorno
+        core.exportVariable('ciudad', data.location.name);
+        core.exportVariable('clima', data.current.temp_c);
+        core.exportVariable('fecha', data.location.localtime);
     })
     .catch(error => {
         // Imprimimos el error en la consola
