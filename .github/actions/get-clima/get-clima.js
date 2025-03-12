@@ -8,7 +8,7 @@ const core = require('@actions/core');
 const axios = require('axios');
 
 async function getWeather(city) {
-    // Obtenemos la API Key de la variable de entorno
+    // Obtenemos la API Key del input del action
     const apiKey = core.getInput('api-key');
 
     // URL de la API de WeatherAPI
