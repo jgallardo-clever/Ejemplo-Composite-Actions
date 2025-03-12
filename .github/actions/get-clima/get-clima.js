@@ -8,7 +8,7 @@ async function getWeather(city) {
     // Obtenemos la API Key de la variable de entorno
     const apiKey = process.env.WEATHER_API_KEY;
     // URL de la API de WeatherAPI
-    const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+    const url = 'http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}';
     // Hacemos la petición a la API
     const response = await axios.get(url);
     // Retornamos los datos de la respuesta
@@ -21,7 +21,9 @@ const city = process.env.INPUT_CITY;
 getWeather(city)
     .then(data => {
         // Imprimimos el nombre de la ciudad y la temperatura en la consola
-        console.log(`La temperatura actual en ${city} es de ${data.current.temp_c}°C`);
+        console.log('::set-output name=ciudad::${data.location.name]');
+        console.log('::set-output name=clima::${data.current.temp_c}');
+        console.log('::set-output name=fecha::${data.location.localtime}');
     })
     .catch(error => {
         // Imprimimos el error en la consola

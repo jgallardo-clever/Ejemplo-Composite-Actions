@@ -1,35 +1,66 @@
 # Workflow que nos imprime el nombre del usuario que ejecutó el workflow, la fecha, la hora y lo almacena en un archivo llamado visitantes.txt
 name: Quién me visita
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      ciudad:
+        description: 'Nombre de la ciudad'
+        required: true
+        default: 'Santiago'
 
 jobs:
-    visitante:
-        name: Quién me visita
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout del repositorio
-              uses: actions/checkout@v2
+  visitante:
+    name: Quién me visita
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v2
 
-            - name: Listamos los archivos y carpetas
-              run: ls -la -R
+      - name: Listamos los archivos y carpetas
+        run: ls -la -R
 
-            - name: Verificar existencia de get-usuario.yml
-              run: test -f ./.github/actions/get-usuario/action.yml || { echo "Archivo get-usuario/action.yml no encontrado"; exit 1; }
+      - name: Verificar existencia de get-usuario.yml
+        run: test -f ./.github/actions/get-usuario/action.yml || { echo "Archivo get-usuario/action.yml no encontrado"; exit 1; }
 
-            - name: Obtener USUARIO de la variable de entorno creada por el action
-              uses: ./.github/actions/get-usuario
+      - name: Obtener USUARIO de la variable de entorno creada por el action
+        uses: ./.github/actions/get-usuario
 
-            - name: Imprimir visitante
-              run: echo "El usuario $USUARIO visitó el archivo a las $(date)" >> visitantes.txt
-            
-            - name: Mostrar visitantes
-              run: cat visitantes.txt
-            
-            - name: Agregar commit con el archivo visitantes.txt
-              run: |
-                git config user.name "github-actions[bot]"
-                git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-                git add .
-                git commit -m "Se agrega al usuario $USUARIO a visitantes.txt"
-                git push
+      - name: Imprimir visitante
+        run: echo "El usuario $USUARIO visitó el archivo a las $(date)" >> visitantes.txt
+
+      - name: Mostrar visitantes
+        run: cat visitantes.txt
+
+      - name: Agregar commit con el archivo visitantes.txt
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Se agrega al usuario $USUARIO a visitantes.txt"
+          git push
+
+  clima:
+    name: Clima actual
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v2
+
+      - name: Obtenemos el clima
+        uses: ./.github/actions/get-clima
+        with:
+          ciudad: ${{ github.event.inputs.ciudad }}
+        env:
+          WHEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+
+      - name: Mostrar clima
+        run: echo "(${{ steps.get-clima.outputs.fecha }}) La temperatura en ${{ steps.get-clima.outputs.ciudad }} es de ${{ steps.get-clima.outputs.clima }}°C" >> clima.txt
+
+      - name: Agregar commit con el archivo clima.txt
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Se agrega el clima de ${{ steps.get-clima.outputs.ciudad }} el ${{ steps.get-clima.outputs.fecha }} a clima.txt"
+          git push
