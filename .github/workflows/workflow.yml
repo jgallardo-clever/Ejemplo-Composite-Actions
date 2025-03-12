@@ -52,7 +52,7 @@ jobs:
         with:
           ciudad: ${{ github.event.inputs.ciudad }}
         env:
-          key-api: ${{ secrets.WEATHER_API_KEY }}
+          api-key: ${{ secrets.WEATHER_API_KEY }}
 
       - name: Mostrar clima
         run: echo "(${{ steps.get-clima.outputs.fecha }}) La temperatura en ${{ steps.get-clima.outputs.ciudad }} es de ${{ steps.get-clima.outputs.clima }}°C" >> clima.txt
