@@ -10,6 +10,13 @@ inputs:
   api-key:
     description: 'API Key para WeatherAPI'
     required: true
+outputs:
+  ciudad:
+    description: 'Nombre de la ciudad obtenida'
+  clima:
+    description: 'Clima actual en grados Celsius'
+  fecha:
+    description: 'Fecha y hora local de la ciudad'
 runs:
   using: 'node12'
   main: 'get-clima.js'
