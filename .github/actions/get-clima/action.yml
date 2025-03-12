@@ -1,4 +1,5 @@
 # Action que utiliza get-clima.js para obtener el clima de una ciudad
+
 name: 'Get Clima'
 description: 'Obtiene el clima de una ciudad'
 inputs:

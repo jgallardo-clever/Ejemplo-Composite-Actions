@@ -10,7 +10,6 @@ const axios = require('axios');
 async function getWeather(city) {
     // Obtenemos la API Key del input del action
     const apiKey = core.getInput('api-key');
-
     // URL de la API de WeatherAPI
     const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
     // Hacemos la petición a la API

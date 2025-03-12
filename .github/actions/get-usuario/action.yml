@@ -1,8 +1,10 @@
-# Action que nos almacena el nombre del usuario que ejecutó el workflow en una variable de entorno llamada USUARIO
+# Action que nos almacena el nombre del usuario que ejecutó el workflow en una variable de entorno llamada USUARIO,
+# además de exportar la variable de entorno FECHA con la fecha y hora actual.
+
 name: 'Obtener Usuario'
 description: 'Obtiene el nombre del usuario que ejecuta el workflow'
 runs:
   using: 'composite'
   steps:
-    - run: echo "USUARIO=${{ github.actor }}" >> $GITHUB_ENV
+    - run: echo "usuario=${{ github.actor }}" >> $GITHUB_ENV && echo "fecha=$(date)" >> $GITHUB_ENV
       shell: bash
