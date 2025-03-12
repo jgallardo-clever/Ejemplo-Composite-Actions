@@ -51,6 +51,7 @@ jobs:
         uses: ./.github/actions/get-clima
         with:
           ciudad: ${{ github.event.inputs.ciudad }}
+					key-api: ${{ secrets.WEATHER_API_KEY }}
         env:
           WHEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
 
