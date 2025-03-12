@@ -1,0 +1,1 @@
+() La temperatura en  es de °C
