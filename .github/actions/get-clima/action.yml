@@ -1,0 +1,11 @@
+# Action que utiliza get-clima.js para obtener el clima de una ciudad
+name: 'Get Clima'
+description: 'Obtiene el clima de una ciudad'
+inputs:
+  ciudad:
+    description: 'Nombre de la ciudad'
+    required: true
+    default: 'Santiago'
+runs:
+  using: 'node12'
+  main: 'get-clima.js'
