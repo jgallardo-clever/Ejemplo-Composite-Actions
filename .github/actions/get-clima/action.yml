@@ -6,6 +6,9 @@ inputs:
     description: 'Nombre de la ciudad'
     required: true
     default: 'Santiago'
+  api-key:
+    description: 'API Key para WeatherAPI'
+    required: true
 runs:
   using: 'node12'
   main: 'get-clima.js'
