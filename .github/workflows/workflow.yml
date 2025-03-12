@@ -51,9 +51,8 @@ jobs:
         uses: ./.github/actions/get-clima
         with:
           ciudad: ${{ github.event.inputs.ciudad }}
-					key-api: ${{ secrets.WEATHER_API_KEY }}
         env:
-          WHEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+          key-api: ${{ secrets.WEATHER_API_KEY }}
 
       - name: Mostrar clima
         run: echo "(${{ steps.get-clima.outputs.fecha }}) La temperatura en ${{ steps.get-clima.outputs.ciudad }} es de ${{ steps.get-clima.outputs.clima }}°C" >> clima.txt
