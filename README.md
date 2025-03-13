@@ -13,6 +13,7 @@
 ## 📊 Resultados
 
 - 📄 El archivo `visitantes.txt` se actualizará con el nombre del usuario que ejecutó el workflow y la fecha y hora de la ejecución.
+- 💬 Se enviará un mensaje de actualización con el nombre del usuario que ejecutó el workflow al canal `#general` en el [Servidor de pruebas en Discord](https://discord.gg/fpURYvg2).
 - 🌡️ El archivo `clima.txt` se actualizará con la temperatura actual de la ciudad especificada.
 
 ## 📜 Licencia
