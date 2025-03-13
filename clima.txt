@@ -2,3 +2,4 @@
 (2025-03-12 15:25) La temperatura en Santiago es de 33.1°C
 (2025-03-12 16:59) La temperatura en Santiago es de 32.2°C
 (2025-03-13 11:28) La temperatura en Santiago es de 23.2°C
+(2025-03-13 11:34) La temperatura en Santiago es de 23.2°C
