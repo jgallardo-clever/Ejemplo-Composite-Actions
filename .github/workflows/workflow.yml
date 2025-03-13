@@ -44,6 +44,12 @@ jobs:
           git commit -m "Se agrega al usuario ${{ env.usuario }} a visitantes.txt"
           git push
 
+      - name: Enviar mensaje a Discord
+        uses: ./.github/actions/discord-message
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          usuario: ${{ env.usuario }}
+
   clima:
     name: Clima actual
     runs-on: ubuntu-latest

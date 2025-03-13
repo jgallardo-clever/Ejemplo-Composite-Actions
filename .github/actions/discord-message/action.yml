@@ -1,0 +1,20 @@
+# Action que envía un mensaje a un canal de Discord
+# El script está hecho en python y se requiere la librería discord-webhook
+
+name: 'Discord Message'
+description: 'Envía un mensaje a un canal de Discord'
+inputs:
+  webhook-url:
+    description: 'URL del webhook de Discord'
+    required: true
+  usuario:
+    description: 'Usuario que ejecutó el workflow'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: 'Ejecutar script'
+      shell: bash
+      run: |
+        python3 -m pip install discord-webhook
+        python3 ${{ github.action_path }}/ds.py ${{ inputs.webhook-url }} ${{ inputs.usuario }}
