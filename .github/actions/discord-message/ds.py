@@ -7,5 +7,5 @@ import sys
 url = sys.argv[1]
 user = sys.argv[2]
 
-webhook = DiscordWebhook(url=url, content=user)
+webhook = DiscordWebhook(url=url, content="El usuario " + user + " ha ejecutado el workflow.")
 response = webhook.execute()
